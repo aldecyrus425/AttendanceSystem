@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace MyApp.Infrastructure.Persistence.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> option) : base(option) { }
 
-
+        DbSet<GradeLevel> GradeLevels { get; set; }
     }
 }

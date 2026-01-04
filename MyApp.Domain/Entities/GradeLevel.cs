@@ -19,7 +19,7 @@ namespace MyApp.Domain.Entities
 
         public GradeLevel(string name, string? description)
         {
-            if (!string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
                 throw new DomainException("Grade level name is required");
 
             if (name.Length > 100)
@@ -32,7 +32,7 @@ namespace MyApp.Domain.Entities
 
         public void Update(string name, string? description)
         {
-            if (!string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
                 throw new DomainException("Grade level name is required");
 
             if (name.Length > 100)
