@@ -1,19 +1,11 @@
 ﻿using MyApp.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MyApp.Domain.Entities
 {
     public class GradeLevel
     {
-        public int GradeLevelId { get; set; }
-        public string Name { get; set; }
-        public string? Description { get; set; }
+        public int GradeLevelId { get; internal set; }
+        public string Name { get; internal set; }
+        public string? Description { get; internal set; }
 
         protected GradeLevel() { } //For ORM
 
