@@ -9,11 +9,11 @@ namespace MyApp.Domain.Entities
 {
     public class Section
     {
-        public int SectionID { get; set; }
-        public int GradeLevelID { get; set; }
-        public GradeLevel GradeLevel { get; set; }
-        public string Name { get; set; }
-        public string SchoolYear { get; set; }
+        public int SectionID { get; internal set; }
+        public int GradeLevelID { get; internal set; }
+        public GradeLevel GradeLevel { get; internal set; }
+        public string Name { get; internal set; }
+        public string SchoolYear { get; internal set; }
 
         protected Section() { }
 

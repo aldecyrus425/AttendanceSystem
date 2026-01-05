@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyApp.Domain.Exceptions;
 
 namespace MyApp.Domain.Entities
 {
@@ -19,6 +20,30 @@ namespace MyApp.Domain.Entities
         public DateTime? UpdatedAt { get; set; }
         
         protected AttendanceRecords() {}
+
+        public AttendanceRecords(int studentID, AttendanceType type)
+        {
+            if (studentID <= 0)
+                throw new DomainException("Something wrong with student ID.");
+
+            if (!Enum.IsDefined(typeof(AttendanceType), type))
+                throw new DomainException("Invalid attendance type.");
+
+            StudentID = studentID;
+            Type = Type;
+        }
+
+        public void Update(int studentID, string type)
+        {
+            if (studentID <= 0)
+                throw new DomainException("Something wrong with student ID.");
+
+            if (type == null)
+                throw new DomainException("Something wrong with attendance type.");
+
+            StudentID = studentID;
+            Type = Type;
+        }
 
     }
 }
