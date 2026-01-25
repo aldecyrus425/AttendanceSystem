@@ -10,7 +10,7 @@ namespace MyApp.Domain.Entities
 {
     public class AttendanceRecords
     {
-        public int AttendanceRecordID { get; set; }
+        public int AttendanceRecordsId { get; set; }
         public int StudentID { get; set; }
         public Students Students { get; set; }
 
@@ -33,7 +33,7 @@ namespace MyApp.Domain.Entities
             Type = Type;
         }
 
-        public void Update(int studentID, string type)
+        public void UpdateAttendanceRecord(int studentID, string type)
         {
             if (studentID <= 0)
                 throw new DomainException("Something wrong with student ID.");
@@ -43,6 +43,7 @@ namespace MyApp.Domain.Entities
 
             StudentID = studentID;
             Type = Type;
+            UpdatedAt = DateTime.Now;
         }
 
     }

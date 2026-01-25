@@ -18,7 +18,6 @@ namespace MyApp.Application.Services.GradeLevelServices
             _repository = repository;
         }
 
-
         public async Task<GradeLevelDTO> AddGradeLevelAsync(CreateGradeLevelDTO request)
         {
             var gradeLevel = new GradeLevel(
@@ -27,7 +26,6 @@ namespace MyApp.Application.Services.GradeLevelServices
             );
 
             await _repository.AddGradeLevelAsync(gradeLevel);
-
             await _repository.SaveChangesAsync();
 
             return new GradeLevelDTO
@@ -65,6 +63,9 @@ namespace MyApp.Application.Services.GradeLevelServices
         public async Task<GradeLevelDTO?> GetGradeLevelAsync(int gradeLevelID)
         {
             var gradeLevel = await _repository.GetGradeLevelAsync(gradeLevelID);
+
+            if(gradeLevel == null)
+                return null;
 
             return new GradeLevelDTO
             {

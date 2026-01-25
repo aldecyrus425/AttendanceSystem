@@ -26,7 +26,7 @@ namespace MyApp.Infrastructure.Repository
 
         public async Task<bool> DeleteParentAsync(int id)
         {
-            var parent = await _context.Parents.FirstOrDefaultAsync(p => p.ParentID == id);
+            var parent = await _context.Parents.FirstOrDefaultAsync(p => p.ParentsId == id);
             if(parent == null) 
                 return false;
 
@@ -42,7 +42,7 @@ namespace MyApp.Infrastructure.Repository
 
         public async Task<Parents?> GetParentByIdAsync(int id)
         {
-            return await _context.Parents.AsNoTracking().FirstOrDefaultAsync(p => p.ParentID == id);
+            return await _context.Parents.AsNoTracking().FirstOrDefaultAsync(p => p.ParentsId == id);
         }
 
         public async Task SaveChangesAsync()

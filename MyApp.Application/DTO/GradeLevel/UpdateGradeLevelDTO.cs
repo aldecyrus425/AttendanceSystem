@@ -10,9 +10,6 @@ namespace MyApp.Application.DTO.GradeLevel
     public class UpdateGradeLevelDTO
     {
         [Required]
-        public int GradeLevelId { get; set; }
-
-        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 

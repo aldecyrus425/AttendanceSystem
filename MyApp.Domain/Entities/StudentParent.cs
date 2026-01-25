@@ -10,10 +10,10 @@ namespace MyApp.Domain.Entities
     public class StudentParent
     {
         public int Id { get; set; }
-        public int StudentID { get; set; }
+        public int StudentId { get; set; }
         public Students Students { get; set; }
 
-        public int ParentID { get; set; }
+        public int ParentId { get; set; }
         public Parents Parents { get; set; }
 
         public string Relationship { get; set; }
@@ -31,8 +31,8 @@ namespace MyApp.Domain.Entities
             if (string.IsNullOrWhiteSpace(relationship))
                 throw new DomainException("Something wrong with relationship of parent and student.");
 
-            StudentID = studentID;
-            ParentID = parentID;
+            StudentId = studentID;
+            ParentId = parentID;
             Relationship = relationship.Trim();
         }
 
@@ -47,8 +47,8 @@ namespace MyApp.Domain.Entities
             if (string.IsNullOrWhiteSpace(relationship))
                 throw new DomainException("Something wrong with relationship of parent and student.");
 
-            StudentID = studentID;
-            ParentID = parentID;
+            StudentId = studentID;
+            ParentId = parentID;
             Relationship = relationship.Trim();
         }
     }

@@ -27,25 +27,37 @@ namespace MyApp.Infrastructure.Repository
 
         public async Task<bool> DeleteStudentAsync(int id)
         {
-            var student = await _context.Students.AsNoTracking().FirstOrDefaultAsync(s => s.StudentID == id);
+            var student = await _context.Students
+                .FirstOrDefaultAsync(s => s.StudentsId == id);
 
             if (student == null)
                 return false;
 
-            _context.Students.Remove(student);
+            student.isActive = false;
+            student.UpdateAt = DateTime.Now;
 
             return true;
         }
 
         public async Task<IEnumerable<Students>> GetAllStudentsAsync()
         {
-            return await _context.Students.AsNoTracking().ToListAsync();
+            return await _context.Students
+                .Where(s => s.isActive == true)
+                .Include(s => s.Section)
+                    .ThenInclude(sec => sec.GradeLevel)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Students?> GetStudentByIDAsync(int id)
         {
-            return await _context.Students.FirstOrDefaultAsync(s => s.StudentID == id);
+            return await _context.Students
+                .Include(s => s.Section)
+                .ThenInclude(sec => sec.GradeLevel)
+                .FirstOrDefaultAsync(s => s.StudentsId == id);
         }
+
+
 
         public async Task SaveChangesAsync()
         {

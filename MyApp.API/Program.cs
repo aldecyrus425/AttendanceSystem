@@ -1,25 +1,58 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Application.Interfaces.Repository;
+using MyApp.Application.Interfaces.Services;
+using MyApp.Application.Services.GradeLevelServices;
+using MyApp.Application.Services.SectionServices;
+using MyApp.Application.Services.Student;
 using MyApp.Infrastructure.Persistence.Context;
+using MyApp.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
+
+// DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Dependency Injection
+builder.Services.AddScoped<IStudentServices, StudentsServices>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IGradeLevelServices, GradeLevelServices>();
+builder.Services.AddScoped<IGradeLevelRepository, GradeLevelRepository>();
+builder.Services.AddScoped<ISectionServices, SectionServices>();
+builder.Services.AddScoped<ISectionRepository, SectionRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApp API v1");
+        c.RoutePrefix = string.Empty; // Swagger at root
+    });
 }
 
 app.UseHttpsRedirection();
+
+// ✅ Apply CORS here, before Authorization
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

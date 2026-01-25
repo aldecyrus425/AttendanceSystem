@@ -26,7 +26,8 @@ namespace MyApp.Infrastructure.Repository
 
         public async Task<bool> DeleteSectionAsync(int id)
         {
-            var section = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(s => s.SectionID == id);
+            var section = await _context.Sections
+                .FirstOrDefaultAsync(s => s.SectionId == id);
 
             if (section == null)
                 return false;
@@ -38,12 +39,18 @@ namespace MyApp.Infrastructure.Repository
 
         public async Task<IEnumerable<Section>> GetAllSectionsAsync()
         {
-            return await _context.Sections.AsNoTracking().ToListAsync();
+            return await _context.Sections
+                .Include(s => s.GradeLevel)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Section?> GetSectionByIdAsync(int id)
         {
-            return await _context.Sections.AsNoTracking().FirstOrDefaultAsync(s => s.SectionID == id);
+            return await _context.Sections
+                .Include(s => s.GradeLevel)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.SectionId == id);
         }
 
         public async Task SaveChangesAsync()

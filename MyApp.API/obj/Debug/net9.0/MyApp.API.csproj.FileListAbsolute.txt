@@ -160,3 +160,6 @@ C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debu
 C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\aldec\source\repos\AttendanceSystem\AttendanceSystem\MyApp.API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

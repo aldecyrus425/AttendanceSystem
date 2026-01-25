@@ -9,7 +9,7 @@ namespace MyApp.Domain.Entities
 {
     public class Section
     {
-        public int SectionID { get; internal set; }
+        public int SectionId { get; internal set; }
         public int GradeLevelID { get; internal set; }
         public GradeLevel GradeLevel { get; internal set; }
         public string Name { get; internal set; }

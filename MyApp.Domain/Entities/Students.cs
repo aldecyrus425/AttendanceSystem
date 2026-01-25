@@ -9,7 +9,7 @@ namespace MyApp.Domain.Entities
 {
     public class Students
     {
-        public int StudentID { get; set; }
+        public int StudentsId { get; set; }
         public string StudentNumber { get; set; }
         public string QrNumber { get; set; }
         public string FirstName { get; set; }
@@ -18,6 +18,7 @@ namespace MyApp.Domain.Entities
         public DateOnly DateOfBirth { get; set; }
         public string Gender { get; set; }
         public int SectionID { get; set; }
+        public Section Section { get; set; }
 
         public bool isActive { get; set; } = false;
 
@@ -26,10 +27,8 @@ namespace MyApp.Domain.Entities
 
         protected Students() { } //Navigation
 
-        public Students(int studentID, string studentNumber, string qrNumber, string firstName, string lastName, DateOnly dateOfBirth, string gender, int sectionID)
+        public Students(string studentNumber, string qrNumber, string firstName, string middleName, string lastName, DateOnly dateOfBirth, string gender, int sectionID)
         {
-            if (studentID <= 0)
-                throw new DomainException("Something wrong with student ID.");
 
             if (string.IsNullOrWhiteSpace(studentNumber))
                 throw new DomainException("Something wrong with student number.");
@@ -52,20 +51,19 @@ namespace MyApp.Domain.Entities
             if (sectionID <= 0)
                 throw new DomainException("Something wrong with the student ID.");
 
-            StudentID = studentID;
             StudentNumber = studentNumber;
             QrNumber = qrNumber;
             FirstName = firstName;
             LastName = lastName;
+            MiddleName = middleName;
             DateOfBirth = dateOfBirth;
             Gender = gender;
             SectionID = sectionID;
         }
 
-        public void Update(int studentID, string studentNumber, string qrNumber, string firstName, string lastName, DateOnly dateOfBirth, string gender, int sectionID)
+        public void Update(string studentNumber, string qrNumber, string firstName, string lastName, DateOnly dateOfBirth, string gender, int sectionID)
         {
-            if (studentID <= 0)
-                throw new DomainException("Something wrong with student ID.");
+            
 
             if (string.IsNullOrWhiteSpace(studentNumber))
                 throw new DomainException("Something wrong with student number.");
@@ -88,7 +86,6 @@ namespace MyApp.Domain.Entities
             if (sectionID <= 0)
                 throw new DomainException("Something wrong with the student ID.");
 
-            StudentID = studentID;
             StudentNumber = studentNumber;
             QrNumber = qrNumber;
             FirstName = firstName;
