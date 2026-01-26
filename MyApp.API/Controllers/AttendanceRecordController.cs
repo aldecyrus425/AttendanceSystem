@@ -7,7 +7,7 @@ using MyApp.Domain.Exceptions;
 namespace MyApp.API.Controllers
 {
     [ApiController]
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     public class AttendanceRecordController : ControllerBase
     {
         private readonly IAttendanceServices _attendanceServices;

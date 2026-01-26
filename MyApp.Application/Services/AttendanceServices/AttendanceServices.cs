@@ -24,22 +24,28 @@ namespace MyApp.Application.Services.AttendanceServices
 
         public async Task<AttendanceDTO> AddAttendanceAsync(CreateAttendanceDTO dto)
         {
-            var attendanceRecord = new AttendanceRecords(dto.StudentID, dto.Type);
-
-            await _recordRepository.AddAttendanceRecordAsync(attendanceRecord);
-            await _recordRepository.SaveChangesAsync();
-
-            var student = await _studentRepository.GetStudentByIDAsync(attendanceRecord.StudentID);
-            if(student == null)
+            var student = await _studentRepository.GetStudentByQrNumber(dto.QrNumber);
+            if (student == null)
             {
                 throw new NotFoundException("Students data not found.");
             }
 
+            var attendanceRecord = new AttendanceRecords(dto.QrNumber, dto.Type);
+
+            await _recordRepository.AddAttendanceRecordAsync(attendanceRecord);
+            await _recordRepository.SaveChangesAsync();
+
             return new AttendanceDTO 
             {
                 AttendanceRecordsId = attendanceRecord.AttendanceRecordsId,
-                StudentID = attendanceRecord.StudentID,
-                Students = student,
+                StudentID = student.StudentsId,
+                QrNumber = student.QrNumber,
+                FirstName = student.FirstName,
+                MiddleName = student.MiddleName,
+                LastName = student.LastName,
+                Gender = student.Gender,
+                Section = student.Section.Name,
+                GradeLevel = student.Section.GradeLevel.Name,
                 Type = attendanceRecord.Type,
                 CreatedAt = attendanceRecord.CreatedAt
                
@@ -66,10 +72,16 @@ namespace MyApp.Application.Services.AttendanceServices
             return attendanceRecords.Select(a => new AttendanceDTO
             {
                 AttendanceRecordsId = a.AttendanceRecordsId,
-                StudentID = a.StudentID,
-                Students = a.Students,
+                StudentID = a.Students.StudentsId,
+                QrNumber = a.Students.QrNumber,
+                FirstName = a.Students.FirstName,
+                MiddleName = a.Students.MiddleName,
+                LastName = a.Students.LastName,
+                Gender = a.Students.Gender,
+                Section = a.Students.Section.Name,
+                GradeLevel = a.Students.Section.GradeLevel.Name,
                 Type = a.Type,
-                CreatedAt = a.CreatedAt,
+                CreatedAt = a.CreatedAt
             });
         }
 
@@ -82,8 +94,14 @@ namespace MyApp.Application.Services.AttendanceServices
             return new AttendanceDTO 
             {
                 AttendanceRecordsId = attendanceRecord.AttendanceRecordsId,
-                StudentID = attendanceRecord.StudentID,
-                Students = attendanceRecord.Students,
+                StudentID = attendanceRecord.Students.StudentsId,
+                QrNumber = attendanceRecord.Students.QrNumber,
+                FirstName = attendanceRecord.Students.FirstName,
+                MiddleName = attendanceRecord.Students.MiddleName,
+                LastName = attendanceRecord.Students.LastName,
+                Gender = attendanceRecord.Students.Gender,
+                Section = attendanceRecord.Students.Section.Name,
+                GradeLevel = attendanceRecord.Students.Section.GradeLevel.Name,
                 Type = attendanceRecord.Type,
                 CreatedAt = attendanceRecord.CreatedAt
             };
@@ -95,15 +113,21 @@ namespace MyApp.Application.Services.AttendanceServices
             if (attendanceRecord == null)
                 throw new NotFoundException("Attendance record not found.");
 
-            attendanceRecord.UpdateAttendanceRecord(dto.StudentID, dto.Type);
+            attendanceRecord.UpdateAttendanceRecord(dto.QrNumber, dto.Type);
 
             await _recordRepository.SaveChangesAsync();
 
             return new AttendanceDTO
             {
                 AttendanceRecordsId = attendanceRecord.AttendanceRecordsId,
-                StudentID = attendanceRecord.StudentID,
-                Students = attendanceRecord.Students,
+                StudentID = attendanceRecord.Students.StudentsId,
+                QrNumber = attendanceRecord.Students.QrNumber,
+                FirstName = attendanceRecord.Students.FirstName,
+                MiddleName = attendanceRecord.Students.MiddleName,
+                LastName = attendanceRecord.Students.LastName,
+                Gender = attendanceRecord.Students.Gender,
+                Section = attendanceRecord.Students.Section.Name,
+                GradeLevel = attendanceRecord.Students.Section.GradeLevel.Name,
                 Type = attendanceRecord.Type,
                 CreatedAt = attendanceRecord.CreatedAt
             };

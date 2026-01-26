@@ -12,6 +12,7 @@ namespace MyApp.Application.Interfaces.Repository
         Task<IEnumerable<Students>> GetAllStudentsAsync();
 
         Task<Students?> GetStudentByIDAsync(int id);
+        Task<Students?> GetStudentByQrNumber(string qrNumber);
 
         Task AddStudentAsync(Students student);
 

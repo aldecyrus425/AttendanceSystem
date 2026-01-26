@@ -1,1 +1,12 @@
-{"Version":1,"Hash":"qWuJNXimzVQR2DyOcRCFiHwE6oNT+fW340eaa7/auJU=","Source":"MyApp.API","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "1mb8SEwMSlCR1RTKvw8LbBhbUtHygnBEr3HUBHwdb/M=",
+  "Source": "MyApp.API",
+  "BasePath": "_content/MyApp.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

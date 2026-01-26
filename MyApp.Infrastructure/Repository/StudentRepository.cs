@@ -57,7 +57,13 @@ namespace MyApp.Infrastructure.Repository
                 .FirstOrDefaultAsync(s => s.StudentsId == id);
         }
 
-
+        public async Task<Students?> GetStudentByQrNumber(string qrNumber)
+        {
+            return await _context.Students
+                .Include(s => s.Section)
+                .ThenInclude(s => s.GradeLevel)
+                .FirstOrDefaultAsync(s => s.QrNumber == qrNumber);
+        }
 
         public async Task SaveChangesAsync()
         {

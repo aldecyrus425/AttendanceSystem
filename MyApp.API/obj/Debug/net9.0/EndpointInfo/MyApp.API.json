@@ -5,20 +5,10 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/{controller}": {
+    "/api/AttendanceRecord": {
       "get": {
         "tags": [
           "AttendanceRecord"
-        ],
-        "parameters": [
-          {
-            "name": "controller",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -46,16 +36,6 @@
       "post": {
         "tags": [
           "AttendanceRecord"
-        ],
-        "parameters": [
-          {
-            "name": "controller",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "requestBody": {
           "content": {
@@ -100,7 +80,7 @@
         }
       }
     },
-    "/api/{controller}/{id}": {
+    "/api/AttendanceRecord/{id}": {
       "get": {
         "tags": [
           "AttendanceRecord"
@@ -113,14 +93,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "controller",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -160,14 +132,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "controller",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -205,14 +169,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "controller",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -903,8 +859,33 @@
             "type": "integer",
             "format": "int32"
           },
-          "students": {
-            "$ref": "#/components/schemas/Students"
+          "qrNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "nullable": true
+          },
+          "gradeLevel": {
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "$ref": "#/components/schemas/AttendanceType"
@@ -963,9 +944,9 @@
       "CreateAttendanceDTO": {
         "type": "object",
         "properties": {
-          "studentID": {
-            "type": "integer",
-            "format": "int32"
+          "qrNumber": {
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "$ref": "#/components/schemas/AttendanceType"
@@ -1047,25 +1028,6 @@
         },
         "additionalProperties": false
       },
-      "GradeLevel": {
-        "type": "object",
-        "properties": {
-          "gradeLevelId": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "GradeLevelDTO": {
         "type": "object",
         "properties": {
@@ -1116,32 +1078,6 @@
           },
           "data": {
             "$ref": "#/components/schemas/GradeLevelDTO"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Section": {
-        "type": "object",
-        "properties": {
-          "sectionId": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "gradeLevelID": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "gradeLevel": {
-            "$ref": "#/components/schemas/GradeLevel"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "schoolYear": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1289,69 +1225,12 @@
         },
         "additionalProperties": false
       },
-      "Students": {
-        "type": "object",
-        "properties": {
-          "studentsId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "studentNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "qrNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "middleName": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "sectionID": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "section": {
-            "$ref": "#/components/schemas/Section"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "createAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updateAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "UpdateAttendanceDTO": {
         "type": "object",
         "properties": {
-          "studentID": {
-            "type": "integer",
-            "format": "int32"
+          "qrNumber": {
+            "type": "string",
+            "nullable": true
           },
           "type": {
             "type": "string",

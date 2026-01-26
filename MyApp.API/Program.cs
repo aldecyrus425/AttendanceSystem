@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyApp.Application.Interfaces.Repository;
 using MyApp.Application.Interfaces.Services;
+using MyApp.Application.Services.AttendanceServices;
 using MyApp.Application.Services.GradeLevelServices;
 using MyApp.Application.Services.SectionServices;
 using MyApp.Application.Services.Student;
@@ -35,6 +36,8 @@ builder.Services.AddScoped<IGradeLevelServices, GradeLevelServices>();
 builder.Services.AddScoped<IGradeLevelRepository, GradeLevelRepository>();
 builder.Services.AddScoped<ISectionServices, SectionServices>();
 builder.Services.AddScoped<ISectionRepository, SectionRepository>();
+builder.Services.AddScoped<IAttendanceServices, AttendanceServices>();
+builder.Services.AddScoped<IAttendanceRecordRepository, AttendanceRecordsRepository>();
 
 var app = builder.Build();
 

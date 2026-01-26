@@ -10,7 +10,7 @@ namespace MyApp.Application.DTO.Attendance
 {
     public class UpdateAttendanceDTO
     {
-        public int StudentID { get; set; }
+        public string QrNumber { get; set; }
 
         public string Type { get; set; }
 

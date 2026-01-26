@@ -11,7 +11,7 @@ namespace MyApp.Domain.Entities
     public class AttendanceRecords
     {
         public int AttendanceRecordsId { get; set; }
-        public int StudentID { get; set; }
+        public string QrNumber { get; set; }
         public Students Students { get; set; }
 
         public AttendanceType Type { get; set; }
@@ -21,27 +21,27 @@ namespace MyApp.Domain.Entities
         
         protected AttendanceRecords() {}
 
-        public AttendanceRecords(int studentID, AttendanceType type)
+        public AttendanceRecords(string qrNumber, AttendanceType type)
         {
-            if (studentID <= 0)
-                throw new DomainException("Something wrong with student ID.");
+            if (qrNumber == "" || qrNumber == null)
+                throw new DomainException("Something wrong with Qr number.");
 
             if (!Enum.IsDefined(typeof(AttendanceType), type))
                 throw new DomainException("Invalid attendance type.");
 
-            StudentID = studentID;
+            QrNumber = qrNumber;
             Type = Type;
         }
 
-        public void UpdateAttendanceRecord(int studentID, string type)
+        public void UpdateAttendanceRecord(string qrNumber, string type)
         {
-            if (studentID <= 0)
+            if (qrNumber == "" || qrNumber == null)
                 throw new DomainException("Something wrong with student ID.");
 
             if (type == null)
                 throw new DomainException("Something wrong with attendance type.");
 
-            StudentID = studentID;
+            QrNumber = qrNumber;
             Type = Type;
             UpdatedAt = DateTime.Now;
         }

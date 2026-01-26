@@ -12,7 +12,13 @@ namespace MyApp.Application.DTO.Attendance
     {
         public int AttendanceRecordsId { get; set; }
         public int StudentID { get; set; }
-        public Students Students { get; set; }
+        public string QrNumber { get; set; }
+        public string FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Gender { get; set; }
+        public string Section { get; set; }
+        public string GradeLevel { get; set; }
 
         public AttendanceType Type { get; set; }
 
